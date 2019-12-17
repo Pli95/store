@@ -1,9 +1,11 @@
 import React from "react";
 import {Product} from "./ProductPage/Product";
 import CardColumns from "react-bootstrap/CardColumns";
+import {LinkContainer} from 'react-router-bootstrap'
+import {Nav} from "react-bootstrap";
 
 
-export class ProductsList extends React.Component{
+export class ProductsList extends React.Component {
   // state = {products:[]}
 
   getProducts() {
@@ -47,7 +49,14 @@ export class ProductsList extends React.Component{
   render() {
     return (
       <CardColumns>
-        {this.getProducts()}
+        <LinkContainer to="/productspage/productdetail">
+          <Nav.Link>
+            <Product
+            img="https://cdn.myanimelist.net/images/characters/9/250903.jpg"
+            title="Title"
+          />
+          </Nav.Link>
+        </LinkContainer>
       </CardColumns>
     )
   }

@@ -4,15 +4,18 @@ import {
   Route
 } from "react-router-dom";
 
-import {ProductsPage} from "./ProductsPage";
-import {CartPage} from "./CartPage";
+import {CartPage} from "./Cart/CartPage";
+import {ProductsPage} from "./Products/ProductsPage";
+import {ProductDetailPage} from "./Products/ProductDetail/ProductDetailPage";
+
 
 export class Routes extends React.Component{
   render() {
     return (
       <Switch>
         <Route exact path='/' component={ProductsPage}/>
-        <Route path='/productspage' component={ProductsPage}/>
+        <Route exact path='/productspage/productdetail' component={ProductDetailPage}/>
+        <Route exact path='/productspage' component={ProductsPage}/>
         <Route path='/cartpage' component={CartPage}/>
         <Route render={() => (<div>404 NOT FOUND</div>)}/>
       </Switch>
