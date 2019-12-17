@@ -1,11 +1,10 @@
 import React from "react";
+import {ProductsList} from "./ProductsList";
 
 export class ProductsPage extends React.Component{
   render() {
     return (
-      <h1>
-        ProductsPage
-      </h1>
+      <ProductsList/>
     );
   }
 
