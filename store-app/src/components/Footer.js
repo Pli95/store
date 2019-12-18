@@ -4,7 +4,7 @@ import {Nav, Navbar} from "react-bootstrap";
 export class Footer extends React.Component {
   render() {
     return (
-      <Navbar bg="dark" expand="lg" variant="dark" fixed="bottom">
+      <Navbar bg="dark" expand="lg" variant="dark" sticky="bottom">
         <Nav>
 
         </Nav>
