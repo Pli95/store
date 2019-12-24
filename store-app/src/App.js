@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router} from "react-router-dom";
 import configureStore from "./redux/configureStore";
-import {Provider as ReduxProvider} from 'react-redux'
+import {Provider} from 'react-redux'
 
 import './App.css';
 import {Header} from "./components/Header";
@@ -13,7 +13,7 @@ const store = configureStore();
 
 function App() {
   return (
-    <ReduxProvider store={store}>
+    <Provider store={store}>
       <div className="App">
         <Router>
           <Header/>
@@ -21,7 +21,7 @@ function App() {
         </Router>
         <Footer/>
       </div>
-    </ReduxProvider>
+    </Provider>
   );
 }
 

@@ -1,14 +1,15 @@
 import React from "react";
-import {Product} from "./ProductPage/Product";
+import {Product} from "./Product";
+// import * as productsAction from "../../redux/actions/productsAction"
 
 export class ProductsList extends React.Component {
 
   state = {products: []};
 
-  async UNSAFE_componentWillMount() {
+  async componentDidMount() {
     const response = await fetch('https://my-json-server.typicode.com/tdmichaelis/typicode/products');
     const products = await response.json();
-    console.log(products[0])
+    // console.log(products[0])
     this.setState({
       products
     })
@@ -29,7 +30,7 @@ export class ProductsList extends React.Component {
 
   render() {
     return (
-      <div to="/productspage/productdetail" className="d-flex flex-wrap justify-content-around">
+      <div className="d-flex flex-wrap justify-content-around">
         {this.renderProducts()}
       </div>
     )

@@ -3,9 +3,18 @@ import {LinkContainer} from 'react-router-bootstrap'
 import {Navbar, Nav} from "react-bootstrap";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Badge} from "@material-ui/core";
 
 
 export class Header extends React.Component {
+  state = {
+    cartNum: 0
+};
+
+  handleAddCart = () => {
+    this.setState( { cartNum: this.state.cartNum + 1})
+  }
+
   render() {
     return (
       <Navbar bg="dark" expand="lg" variant="dark">
@@ -17,7 +26,9 @@ export class Header extends React.Component {
         <Nav className="ml-auto">
           <LinkContainer to="/cartpage">
             <Nav.Link>
-              <FontAwesomeIcon icon={faShoppingCart}/>
+              <Badge badgeContent={this.state.cartNum} color={"primary"}>
+                <FontAwesomeIcon icon={faShoppingCart}/>
+              </Badge>
             </Nav.Link>
           </LinkContainer>
         </Nav>

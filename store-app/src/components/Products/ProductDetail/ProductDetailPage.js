@@ -1,35 +1,50 @@
 import React from "react";
-import {Card, CardGroup, Button} from "react-bootstrap";
-import Rating from "react-rating";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar as faStarFull} from "@fortawesome/free-solid-svg-icons";
-import {faStar as faStarEmpty} from '@fortawesome/free-regular-svg-icons'
+import {Header} from "../../Header";
+import {ProductDetailList} from "./ProductDetailList";
 
 export class ProductDetailPage extends React.Component{
+
+  state = {products: []};
+
+  async componentDidMount() {
+    const response = await fetch('https://my-json-server.typicode.com/tdmichaelis/typicode/products');
+    const products = await response.json();
+    console.log(products[0].rating)
+    this.setState({
+      products
+    })
+  }
+
+  renderProducts = () => {
+    return this.state.products.map(p => {
+      return (
+        <ProductDetailList
+          id={p.id}
+          key={p.id}
+          img={p.img}
+          title={p.title}
+          description={p.description}
+          price={p.price}
+          rating={p.rating}
+        />
+      )
+    })
+
+  };
+
+  handleAddCart = () => {
+    console.log("click")
+    return (
+      <Header
+        handleAddCart={this.handleAddCart}
+      />
+    )
+  }
 
   render() {
     return (
       <div className="p-5">
-        <CardGroup>
-        <img src="https://cdn.myanimelist.net/images/characters/9/250903.jpg" width="30%" alt="title"/>
-        <Card>
-          <Card.Header>
-          <h1>Title</h1>
-          <Rating
-            initialRating={2.5}
-            emptySymbol={<FontAwesomeIcon icon={faStarEmpty}/>}
-            fullSymbol={<FontAwesomeIcon icon={faStarFull} style={{ color: '#007bff'}}/>}
-            readonly/>
-          </Card.Header>
-          <Card.Body>
-          <h3>$199.99</h3>
-          <p>Description of the product will be entered here. Blah blah blah</p>
-          </Card.Body>
-          <Card.Footer>
-          <Button variant="primary" width="20px">Add to Cart</Button>
-          </Card.Footer>
-        </Card>
-        </CardGroup>
+        {this.renderProducts()}
       </div>
     )
   }
