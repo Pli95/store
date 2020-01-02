@@ -24,10 +24,10 @@ export class CartItem extends React.Component {
   render() {
     return (
       <Card style={{width: '50%'}} className="d-flex flex-row justify-content-between align-items-center p-2 mt-3">
-        <img src="https://cdn.myanimelist.net/images/characters/9/250903.jpg" height="50%" alt="product"/>
+        <img src={this.props.img} width="50%" alt="product"/>
         <div>
-          <h3>Title</h3>
-          <span>$199.99</span>
+          <h3>{this.props.title}</h3>
+          <span>{this.props.price}</span>
         </div>
         <div className="d-flex">
           <ButtonGroup className="border mr-2 rounded">

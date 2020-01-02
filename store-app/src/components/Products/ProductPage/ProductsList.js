@@ -1,24 +1,14 @@
 import React from "react";
 import {Product} from "./Product";
-// import * as productsAction from "../../redux/actions/productsAction"
+import store from "../../../redux/configureStore";
 
 export class ProductsList extends React.Component {
 
-  state = {products: []};
-
-  async componentDidMount() {
-    const response = await fetch('https://my-json-server.typicode.com/tdmichaelis/typicode/products');
-    const products = await response.json();
-    // console.log(products[0])
-    this.setState({
-      products
-    })
-  }
-
   renderProducts = () => {
-    return this.state.products.map(p => {
+    return store.getState().products.map(p => {
       return (
         <Product
+          id={p.id}
           key={p.id}
           img={p.img}
           title={p.title}

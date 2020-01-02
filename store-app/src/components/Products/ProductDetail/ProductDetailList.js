@@ -10,7 +10,7 @@ export class ProductDetailList extends React.Component{
   render() {
     return (
       <CardGroup>
-        <img src={this.props.img} width="30%" alt={this.props.title}/>
+        <img src={this.props.img} width="30%" alt={this.props.title} style={{ maxHeight: '700px', objectFit: 'contain' }} className="pr-2"/>
         <Card>
           <Card.Header>
             <h1>{this.props.title}</h1>

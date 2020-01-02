@@ -14,7 +14,7 @@ export class Routes extends React.Component{
     return (
       <Switch>
         <Route exact path='/' component={ProductsPage}/>
-        <Route exact path='/productspage/:1' component={ProductDetailPage}/>
+        <Route exact path='/productspage/:productId' component={ProductDetailPage}/>
         <Route exact path='/productspage' component={ProductsPage}/>
         <Route path='/cartpage' component={CartPage}/>
         <Route render={() => (<div>404 NOT FOUND</div>)}/>

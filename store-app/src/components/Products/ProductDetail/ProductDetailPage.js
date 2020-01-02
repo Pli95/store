@@ -1,22 +1,13 @@
 import React from "react";
 import {Header} from "../../Header";
 import {ProductDetailList} from "./ProductDetailList";
+import store from "../../../redux/configureStore";
 
 export class ProductDetailPage extends React.Component{
 
-  state = {products: []};
-
-  async componentDidMount() {
-    const response = await fetch('https://my-json-server.typicode.com/tdmichaelis/typicode/products');
-    const products = await response.json();
-    console.log(products[0].rating)
-    this.setState({
-      products
-    })
-  }
-
   renderProducts = () => {
-    return this.state.products.map(p => {
+    const product = store.getState().products.filter(p => p.id === Number(this.props.match.params.productId))
+    return product.map(p => {
       return (
         <ProductDetailList
           id={p.id}
@@ -27,6 +18,7 @@ export class ProductDetailPage extends React.Component{
           price={p.price}
           rating={p.rating}
         />
+
       )
     })
 
