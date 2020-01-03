@@ -1,11 +1,11 @@
 import React from "react";
-import {Header} from "../../Header";
 import {ProductDetailList} from "./ProductDetailList";
 import store from "../../../redux/configureStore";
 
 export class ProductDetailPage extends React.Component{
 
   renderProducts = () => {
+    // console.log(store.getState().cart)
     const product = store.getState().products.filter(p => p.id === Number(this.props.match.params.productId))
     return product.map(p => {
       return (
@@ -23,15 +23,6 @@ export class ProductDetailPage extends React.Component{
     })
 
   };
-
-  handleAddCart = () => {
-    console.log("click")
-    return (
-      <Header
-        handleAddCart={this.handleAddCart}
-      />
-    )
-  }
 
   render() {
     return (

@@ -17,17 +17,16 @@ export class CartItem extends React.Component {
   }
 
   handleDelete = () => {
-    console.log(this.props)
-    this.props.onDeleteClick(this.props.id)
+    console.log("delete")
   }
 
   render() {
     return (
-      <Card style={{width: '50%'}} className="d-flex flex-row justify-content-between align-items-center p-2 mt-3">
-        <img src={this.props.img} width="50%" alt="product"/>
+      <Card style={{width: '50%', height: '270px'}} className="d-flex flex-row justify-content-between align-items-center p-2 mt-3">
+        <img src={this.props.img} width="50%" alt="product" style={{ maxHeight: "100%", objectFit: "contain" }}/>
         <div>
           <h3>{this.props.title}</h3>
-          <span>{this.props.price}</span>
+          <span>${this.props.price}</span>
         </div>
         <div className="d-flex">
           <ButtonGroup className="border mr-2 rounded">

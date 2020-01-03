@@ -4,15 +4,13 @@ import {Navbar, Nav} from "react-bootstrap";
 import {faShoppingCart} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Badge} from "@material-ui/core";
+import store from "../redux/configureStore";
 
 
 export class Header extends React.Component {
-  state = {
-    cartNum: 0
-};
 
-  handleAddCart = () => {
-    this.setState( { cartNum: this.state.cartNum + 1})
+  renderCart = () => {
+    return store.getState().cart.length
   }
 
   render() {
@@ -26,7 +24,7 @@ export class Header extends React.Component {
         <Nav className="ml-auto">
           <LinkContainer to="/cartpage">
             <Nav.Link>
-              <Badge badgeContent={this.state.cartNum} color={"primary"}>
+              <Badge badgeContent={this.renderCart()} color={"primary"}>
                 <FontAwesomeIcon icon={faShoppingCart}/>
               </Badge>
             </Nav.Link>
