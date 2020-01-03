@@ -10,9 +10,9 @@ import * as types from "../../../redux/actions/actionTypes";
 export class ProductDetailList extends React.Component{
 
   handleAddCart = () => {
-    const product = this.props
+    console.log(this.props)
+    const product = this.props;
     store.dispatch({type: types.ADD_CART, product: product })
-    console.log(store.getState().cart)
   }
 
   render() {

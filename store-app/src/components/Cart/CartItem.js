@@ -2,22 +2,24 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import store from "../../redux/configureStore";
+import * as types from "../../redux/actions/actionTypes";
 
 export class CartItem extends React.Component {
-  state = {
-    itemNum: 1
-  }
 
   handleAdd = () => {
-    this.setState({itemNum: this.state.itemNum + 1})
+    const product = this.props
+    store.dispatch({type: types.ADD_QTY, product: product })
   }
 
   handleLess = () => {
-    this.setState({itemNum: this.state.itemNum - 1})
+    const product = this.props
+    store.dispatch({type: types.DELETE_QTY, product: product })
   }
 
   handleDelete = () => {
-    console.log("delete")
+   const product = this.props
+    store.dispatch({type: types.DELETE_PRODUCT, product: product})
   }
 
   render() {
@@ -30,8 +32,8 @@ export class CartItem extends React.Component {
         </div>
         <div className="d-flex">
           <ButtonGroup className="border mr-2 rounded">
-            <Button onClick={this.handleLess} disabled={this.state.itemNum === 0}>-</Button>
-            <div style={{width: '35px'}} className='align-self-center'>{this.state.itemNum}</div>
+            <Button onClick={this.handleLess} disabled={this.props.qty === 0}>-</Button>
+            <div style={{width: '35px'}} className='align-self-center'>{this.props.qty}</div>
             <Button onClick={this.handleAdd}>+</Button>
           </ButtonGroup>
           <Button variant="danger" onClick={this.handleDelete}>Delete</Button>

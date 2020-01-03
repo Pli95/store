@@ -1,35 +1,29 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import {CartItem} from "./CartItem";
+import store from "../../redux/configureStore";
 
 export class CartPage extends React.Component {
-  state = {products: []};
-
-  async componentDidMount() {
-    const response = await fetch('https://my-json-server.typicode.com/tdmichaelis/typicode/products');
-    const products = await response.json();
-    // console.log(products[0])
-    this.setState({
-      products
-    })
-  }
 
   renderProducts = () => {
-    return this.state.products.map(p => {
-      return (
-        <CartItem
-          key={p.id}
-          img={p.img}
-          title={p.title}
-          price={p.price}
-          onDeleteClick={this.handleDelete}
-        />
-      )
-    })
+    if(store.getState().cart.length === 0) {
+      return (<h3>Cart is empty.</h3>)
+    }
+    else {
+      return store.getState().cart.map(p => {
+        return (
+          <CartItem
+            key={p.id}
+            id={p.id}
+            img={p.img}
+            title={p.title}
+            price={p.price}
+            qty={p.qty}
+          />
+        )
+      })
+    }
 
-  };
-  handleDelete = () => {
-    console.log("delete")
   };
 
 
