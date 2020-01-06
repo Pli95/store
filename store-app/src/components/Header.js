@@ -17,6 +17,9 @@ export class Header extends React.Component {
     return (
       <Navbar bg="dark" expand="lg" variant="dark">
         <Nav className="mr-auto">
+          <LinkContainer to="/homepage">
+            <Navbar.Brand>ElecStore</Navbar.Brand>
+          </LinkContainer>
           <LinkContainer to="/productspage">
             <Nav.Link>Products</Nav.Link>
           </LinkContainer>
