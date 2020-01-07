@@ -8,7 +8,7 @@ export class HomePage extends React.Component {
       <div className='m-5'>
         <h1>Home</h1>
         <p>Welcome to ElecStore! Start shopping now!</p>
-        <LinkContainer to='/productspage'>
+        <LinkContainer to='/productspage/all'>
           <Button>Shop Now</Button>
         </LinkContainer>
       </div>

@@ -14,22 +14,29 @@ import * as types from "../redux/actions/actionTypes";
 export class Header extends React.Component {
 
   state = {
-    show: false
+    show: false,
+    categories: []
   };
+
+  async componentDidMount() {
+    const response = await fetch('https://my-json-server.typicode.com/tdmichaelis/typicode/categories');
+    const categories = await response.json();
+    this.setState({categories: categories})
+  }
+
 
   renderCart = () => {
     return store.getState().cart.length
   };
 
   renderLogout = () => {
-    store.dispatch({type:types.REMOVE_USER, user: false})
+    store.dispatch({type: types.REMOVE_USER, user: false})
   };
 
   renderLogin = () => {
     if (!store.getState().user) {
       return (<Nav.Link onClick={this.handleShow}>Login</Nav.Link>)
-    }
-    else {
+    } else {
       return (
         <NavDropdown id="userDropdown" title={`Welcome ${store.getState().user}`}>
           <NavDropdown.Item onClick={this.renderLogout}>Logout</NavDropdown.Item>
@@ -38,12 +45,28 @@ export class Header extends React.Component {
     }
   };
 
+  renderDropdown = () => {
+    return this.state.categories.map((category, idx) => {
+      return (
+        <LinkContainer to={`/productspage/${category}`} key={idx}>
+          <NavDropdown.Item>
+            {this.capitalize(category)}
+          </NavDropdown.Item>
+        </LinkContainer>
+      )
+    })
+  }
+
 
   handleClose = () => this.setState({show: false});
 
   handleShow = () => {
     this.setState({show: true});
   };
+
+  capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   render() {
     return (
@@ -52,16 +75,23 @@ export class Header extends React.Component {
           <LinkContainer to="/homepage">
             <Navbar.Brand>ElecStore</Navbar.Brand>
           </LinkContainer>
-          <LinkContainer to="/productspage">
-            <Nav.Link>Products</Nav.Link>
-          </LinkContainer>
+          <NavDropdown id="products" title="Products">
+            <LinkContainer to={`/productspage/all`}>
+              <NavDropdown.Item>
+                All
+              </NavDropdown.Item>
+            </LinkContainer>
+            {this.renderDropdown()}
+
+          </NavDropdown>
+
         </Nav>
         <Nav className="ml-auto">
           {this.renderLogin()}
 
           <Modal show={this.state.show} onHide={this.handleClose}>
             <LoginPage
-            onClose={this.handleClose}
+              onClose={this.handleClose}
             />
           </Modal>
 

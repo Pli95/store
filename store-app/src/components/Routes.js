@@ -16,8 +16,8 @@ export class Routes extends React.Component{
     return (
       <Switch>
         <Route exact path='/' component={HomePage}/>
-        <Route exact path='/productspage/:productId' component={ProductDetailPage}/>
-        <Route exact path='/productspage' component={ProductsPage}/>
+        <Route exact path='/productdetailpage/:productId' component={ProductDetailPage}/>
+        <Route exact path='/productspage/:category' component={ProductsPage}/>
         <Route path='/cartpage' component={CartPage}/>
         <Route path='/homepage' component={HomePage}/>
         <Route path='/loginpage' component={LoginPage}/>

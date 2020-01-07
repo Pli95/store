@@ -29,7 +29,7 @@ export class CartPage extends React.Component {
 
   render() {
     return (
-      <div className='d-flex flex-column align-items-center'>
+      <div className='d-flex flex-column align-items-center mb-5'>
         {this.renderProducts()}
         <OverlayTrigger
           placement="right"
